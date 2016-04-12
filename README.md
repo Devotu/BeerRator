@@ -1,0 +1,2 @@
+# BeerRator
+Rate beers!

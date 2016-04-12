@@ -1,0 +1,18 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+
+<widget xmlns = "http://www.w3.org/ns/widgets" 
+   xmlns:gap = "http://phonegap.com/ns/1.0" id = "example.namespace.com" version = "1.0">
+   
+   <name>BoneGap</name>
+   
+   <description>
+      The mere minimum to run
+   </description>
+   
+   <author href = "http://example.com" email = "bonegap@example.com">
+      Boney One
+   </author>
+   
+   <preference name = "permissions" value = "none"/>
+   
+</widget>

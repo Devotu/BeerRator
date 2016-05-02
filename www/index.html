@@ -1,14 +1,21 @@
+<!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="utf-8" />
-        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
-        <title>BoneGap</title>
-        <link rel="icon" href="http://example.com/favicon.ico" type="image/vnd.microsoft.icon" />
-    </head>
-    <body>
+<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+<script src="app.js"></script>
+
+<body ng-app="beerApp">
+    <div ng-controller="contentC">
         <div>
-            <h1>BoneGap</h1>
+            <ul>
+                <select ng-model="currentItem" ng-options="item.name for item in items"></select>
+            </ul>
         </div>
-        <script type="text/javascript" src="cordova.js"/>
-    </body>
+        <div>
+            <p>{{ currentItem.name }}</p>
+            <p>{{ currentItem.country }}</p>
+            <p>{{ average(currentItem.ratings) }}</p>
+            <p ng-repeat="rating in currentItem.ratings">Rating: {{ rating.comment }} - {{ rating.rating }}</p>
+        </div>
+    </div>
+</body>
 </html>

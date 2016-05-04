@@ -1,13 +1,53 @@
 var app = angular.module('beerApp', []);
 app.controller('contentC', function($scope) {
-    $scope.items = [
-        {'name':'Rignes','country':'Norway', 'ratings':[
-            {'rating':3, 'comment':"This taste rather plain."}, {'rating':3}, {'rating':2}]},
-        {'name':'Pripps','country':'Sweden', 'ratings':[
-            {'rating':2}, {'rating':3}, {'rating':5}]},
-        {'name':'Tuborg','country':'Denmark', 'ratings':[
-            {'rating':5}, {'rating':4}, {'rating':3}]}
-    ];
+    $scope.setTemplate = function (type) {
+        if (type == "item") {
+            
+            console.log("item!");
+        } else {
+            console.log("some other thing");
+        };
+    };
+    $scope.items = {'type':'list', 'name':'Beer List', 'items':[
+        {'type':'item','name':'Rignes', 'bits':[
+            {'type':'text', 'name':'Comment', 'text':'Norways pride.'},
+            {'type':'stars', 'name':'Average Rating', 'number':4},
+            {'type':'list', 'name':'Ratings', 'items':[
+                {'type':'item','name':'Rating 1', 'bits':[
+                    {'type':'stars', 'name':'Rating', 'number':3},
+                    {'type':'text', 'name':'Comment', 'text':'A bit dull.'}
+                ]},
+                {'type':'item','name':'Rating 2', 'bits':[
+                    {'type':'stars', 'name':'Rating', 'number':5},
+                    {'type':'text', 'name':'Comment', 'text':'Nice brew!.'}
+                ]},
+                {'type':'item','name':'Rating 3', 'bits':[
+                    {'type':'stars', 'name':'Rating', 'number':4},
+                    {'type':'text', 'name':'Comment', 'text':'Better than average.'}
+                ]}
+            ]},
+            {'type':'text', 'name':'Country', 'text':'Norway'}
+        ]},
+        {'type':'item','name':'Pripps', 'bits':[
+            {'type':'text', 'name':'Comment', 'text':'Aldrig fel.'},
+            {'type':'stars', 'name':'Average Rating', 'number':3},
+            {'type':'list', 'name':'Ratings', 'items':[
+                {'type':'item','name':'Rating 1', 'bits':[
+                    {'type':'stars', 'name':'Rating', 'number':3},
+                    {'type':'text', 'name':'Comment', 'text':'A bit dull.'}
+                ]},
+                {'type':'item','name':'Rating 2', 'bits':[
+                    {'type':'stars', 'name':'Rating', 'number':3},
+                    {'type':'text', 'name':'Comment', 'text':'Ok stuff.'}
+                ]},
+                {'type':'item','name':'Rating 3', 'bits':[
+                    {'type':'stars', 'name':'Rating', 'number':4},
+                    {'type':'text', 'name':'Comment', 'text':'A bit better than usual, probably the weather.'}
+                ]}
+            ]},
+            {'type':'text', 'name':'Country', 'text':'Sweden'}
+        ]}
+    ]};
     $scope.currentItem = {name:'Nothing'};
     $scope.average = function (data) {
         var sum = 0; 

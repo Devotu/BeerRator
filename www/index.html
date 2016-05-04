@@ -7,15 +7,12 @@
     <div ng-controller="contentC">
         <div>
             <ul>
-                <select ng-model="currentItem" ng-options="item.name for item in items"></select>
+                <select ng-model="currentItem" ng-change="setTemplate(currentItem.type)" ng-options="item.name for item in items.items"></select>
+                <div ng-include="'ItemTemplate.html'"></div>
             </ul>
         </div>
-        <div>
-            <p>{{ currentItem.name }}</p>
-            <p>{{ currentItem.country }}</p>
-            <p>{{ average(currentItem.ratings) }}</p>
-            <p ng-repeat="rating in currentItem.ratings">Rating: {{ rating.comment }} - {{ rating.rating }}</p>
-        </div>
     </div>
+
 </body>
+
 </html>

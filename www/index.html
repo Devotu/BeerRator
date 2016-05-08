@@ -1,18 +1,14 @@
 <!DOCTYPE html>
 <html>
-<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+<script src="angular.js"></script>
 <script src="app.js"></script>
 
 <body ng-app="beerApp">
-    <div ng-controller="contentC">
-        <div>
-            <ul>
-                <select ng-model="currentItem" ng-change="setTemplate(currentItem.type)" ng-options="item.name for item in items.items"></select>
-                <div ng-include="'ItemTemplate.html'"></div>
-            </ul>
+    <div ng-controller="contentC" ng-init="init()">
+        <div ng-repeat="item in currentItem.items" 
+        ng-click="changeCurrentItem($event, item)" 
+        ng-include="selectTemplate(item.type)">
         </div>
     </div>
-
 </body>
-
 </html>

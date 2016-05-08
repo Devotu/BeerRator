@@ -1,46 +1,59 @@
 var app = angular.module('beerApp', []);
-app.controller('contentC', function($scope) {
-    $scope.setTemplate = function (type) {
-        if (type == "item") {
-            
-            console.log("item!");
+app.controller('contentC', function($scope) { 
+    
+    $scope.init = function () {
+        console.log("init");
+        $scope.currentItem = $scope.item;
+        console.log($scope.currentItem);
+    }
+    
+    $scope.changeCurrentItem = function ($event, clickItem) {
+       console.log("changing currentItem, recieved " + clickItem.name);
+       $scope.currentItem = clickItem;
+    }
+    
+    $scope.selectTemplate = function (itemType) {
+        console.log("Type passed is " + itemType);
+        if (itemType == "list") {
+            return "ListTemplate.html";
         } else {
-            console.log("some other thing");
-        };
-    };
-    $scope.items = {'type':'list', 'name':'Beer List', 'items':[
-        {'type':'item','name':'Rignes', 'bits':[
-            {'type':'text', 'name':'Comment', 'text':'Norways pride.'},
+            return "ItemTemplate.html";
+        }
+    }
+    
+    $scope.item = {'type':'list', 'name':'Beer List', 'items':[
+        {'type':'item','name':'Tuborg', 'items':[
+            {'type':'text', 'name':'Comment', 'text':'Never really wrong.'},
             {'type':'stars', 'name':'Average Rating', 'number':4},
             {'type':'list', 'name':'Ratings', 'items':[
-                {'type':'item','name':'Rating 1', 'bits':[
+                {'type':'item','name':'Rating 1', 'items':[
                     {'type':'stars', 'name':'Rating', 'number':3},
                     {'type':'text', 'name':'Comment', 'text':'A bit dull.'}
                 ]},
-                {'type':'item','name':'Rating 2', 'bits':[
+                {'type':'item','name':'Rating 2', 'items':[
                     {'type':'stars', 'name':'Rating', 'number':5},
                     {'type':'text', 'name':'Comment', 'text':'Nice brew!.'}
                 ]},
-                {'type':'item','name':'Rating 3', 'bits':[
+                {'type':'item','name':'Rating 3', 'items':[
                     {'type':'stars', 'name':'Rating', 'number':4},
                     {'type':'text', 'name':'Comment', 'text':'Better than average.'}
                 ]}
             ]},
             {'type':'text', 'name':'Country', 'text':'Norway'}
         ]},
-        {'type':'item','name':'Pripps', 'bits':[
+        {'type':'item','name':'Pripps', 'items':[
             {'type':'text', 'name':'Comment', 'text':'Aldrig fel.'},
             {'type':'stars', 'name':'Average Rating', 'number':3},
             {'type':'list', 'name':'Ratings', 'items':[
-                {'type':'item','name':'Rating 1', 'bits':[
+                {'type':'item','name':'Rating 1', 'items':[
                     {'type':'stars', 'name':'Rating', 'number':3},
                     {'type':'text', 'name':'Comment', 'text':'A bit dull.'}
                 ]},
-                {'type':'item','name':'Rating 2', 'bits':[
+                {'type':'item','name':'Rating 2', 'items':[
                     {'type':'stars', 'name':'Rating', 'number':3},
                     {'type':'text', 'name':'Comment', 'text':'Ok stuff.'}
                 ]},
-                {'type':'item','name':'Rating 3', 'bits':[
+                {'type':'item','name':'Rating 3', 'items':[
                     {'type':'stars', 'name':'Rating', 'number':4},
                     {'type':'text', 'name':'Comment', 'text':'A bit better than usual, probably the weather.'}
                 ]}
@@ -48,19 +61,4 @@ app.controller('contentC', function($scope) {
             {'type':'text', 'name':'Country', 'text':'Sweden'}
         ]}
     ]};
-    $scope.currentItem = {name:'Nothing'};
-    $scope.average = function (data) {
-        var sum = 0; 
-        var ratings = 0;
-        try {
-            for (var d in data){
-                sum += parseInt(data[d].rating);
-                ratings++;
-            }
-        } catch (error) {
-            sum = 0;
-        }
-        var avg = sum/ratings;
-        return avg;
-    };
 });

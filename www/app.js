@@ -3,7 +3,7 @@ app.controller('contentC', function($scope) {
     
     $scope.init = function () {
         console.log("init");
-        $scope.currentItem = $scope.item;
+        $scope.currentItem = getData();
         console.log($scope.currentItem);
         $scope.trace = [];
     }
@@ -32,7 +32,8 @@ app.controller('contentC', function($scope) {
         $scope.trace.push(passedItem);
     }
     
-    $scope.item = {'type':'list', 'name':'Beer List', 'items':[
+    function getData() {
+       return {'type':'list', 'name':'Beer List', 'items':[
         {'type':'item','name':'Tuborg', 'items':[
             {'type':'text', 'name':'Comment', 'text':'Never really wrong.'},
             {'type':'stars', 'name':'Average Rating', 'number':4},
@@ -72,4 +73,5 @@ app.controller('contentC', function($scope) {
             {'type':'text', 'name':'Country', 'text':'Sweden'}
         ]}
     ]};
+    }
 });

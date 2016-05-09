@@ -5,20 +5,31 @@ app.controller('contentC', function($scope) {
         console.log("init");
         $scope.currentItem = $scope.item;
         console.log($scope.currentItem);
+        $scope.trace = [];
     }
     
     $scope.changeCurrentItem = function ($event, clickItem) {
-       console.log("changing currentItem, recieved " + clickItem.name);
+       addToTrace($scope.currentItem);
        $scope.currentItem = clickItem;
     }
     
     $scope.selectTemplate = function (itemType) {
-        console.log("Type passed is " + itemType);
         if (itemType == "list") {
             return "ListTemplate.html";
-        } else {
+        } else if (itemType == "text") {
+            return "TextTemplate.html";
+        } 
+        else {
             return "ItemTemplate.html";
         }
+    }
+    
+    $scope.goBack = function (){
+        $scope.currentItem = $scope.trace.pop();        
+    }
+        
+    function addToTrace(passedItem) {
+        $scope.trace.push(passedItem);
     }
     
     $scope.item = {'type':'list', 'name':'Beer List', 'items':[

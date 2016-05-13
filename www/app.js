@@ -1,10 +1,9 @@
 var app = angular.module('beerApp', []);
-app.controller('contentC', function($scope) { 
+app.controller('contentC', function($scope, $http) { 
     
     $scope.init = function () {
         console.log("init");
-        $scope.currentItem = getData();
-        console.log($scope.currentItem);
+        console.log(getData());
         $scope.trace = [];
     }
     
@@ -18,8 +17,7 @@ app.controller('contentC', function($scope) {
             return "ListTemplate.html";
         } else if (itemType == "text") {
             return "TextTemplate.html";
-        } 
-        else {
+        } else {
             return "ItemTemplate.html";
         }
     }
@@ -33,7 +31,15 @@ app.controller('contentC', function($scope) {
     }
     
     function getData() {
-       return {'type':'list', 'name':'Beer List', 'items':[
+        console.log("fetching data");
+        $http.get("http://localhost:1880/getJSON").then(function(response){
+            $scope.currentItem = response.data;
+            console.log($scope.currentItem);
+        });
+    }
+    
+    function fakeData() {
+       return {'type':'list', 'name':'BeerList', 'items':[
         {'type':'item','name':'Tuborg', 'items':[
             {'type':'text', 'name':'Comment', 'text':'Never really wrong.'},
             {'type':'stars', 'name':'Average Rating', 'number':4},

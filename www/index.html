@@ -4,7 +4,7 @@
 <script src="app.js"></script>
 
 <body ng-app="beerApp">
-    <div ng-controller="contentC" ng-init="init()">
+    <div ng-controller="contentC as contentCtrl" ng-init="init()">
         <div ng-repeat="item in currentItem.items" 
         ng-click="changeCurrentItem($event, item)" 
         ng-include="selectTemplate(item.type)">
